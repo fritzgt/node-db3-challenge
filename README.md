@@ -19,10 +19,34 @@ For this lab you will
 
 Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
-- Display the ProductName and CategoryName for all products in the database. Shows 76 records.
-- Display the OrderID and ShipperName for all orders placed before January 9, 1997. Shows 161 records.
-- Display all ProductNames and Quantities placed on order 10251. Sort by ProductName. Shows 3 records.
-- Display the OrderID, CustomerName and the employee's LastName for every order. All columns should be labeled clearly. Displays 196 records.
+[x] Display the ProductName and CategoryName for all products in the database. Shows 76 records.
+
+SELECT ProductName, CategoryName FROM products
+JOIN categories
+ON products.CategoryID = categories.CategoryID
+
+[x] Display the OrderID and ShipperName for all orders placed before January 9, 1997. Shows 161 records.
+
+SELECT OrderID, ShipperName FROM orders as o
+JOIN shippers as s
+ON o.ShipperID = s.ShipperID
+WHERE OrderDate < '1997-01-09
+
+[x] Display all ProductNames and Quantities placed on order 10251. Sort by ProductName. Shows 3 records.
+
+SELECT ProductName, Quantity FROM orderdetails as o
+JOIN products as p
+ON o.productid = p.productid
+WHERE Orderid = 10251
+ORDER BY ProductName
+
+[x] Display the OrderID, CustomerName and the employee's LastName for every order. All columns should be labeled clearly. Displays 196 records.
+
+SELECT OrderID, CustomerName, LastName as Employee_LastName FROM orders as o
+JOIN customers as c
+ON o.customerid = c.customerid
+JOIN employees as e
+ON e.employeeid = o.employeeid
 
 ### Database Methods
 
