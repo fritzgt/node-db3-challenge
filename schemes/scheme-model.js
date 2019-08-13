@@ -22,8 +22,18 @@ function findById(id) {
     .first();
 }
 
-function add(user) {}
+function add(schemeData) {
+  return db('schemes').insert(schemeData);
+}
 
-function update(changes, id) {}
+function update(changes, id) {
+  return db('schemes')
+    .where({ id })
+    .update(changes);
+}
 
-function remove(id) {}
+function remove(id) {
+  return db('schemes')
+    .where({ id })
+    .delete();
+}
