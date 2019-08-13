@@ -31,6 +31,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+//[x] Tested and working
 router.get('/:id/steps', async (req, res) => {
   const { id } = req.params;
 
@@ -61,6 +62,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+//[x] Tested and working
 router.post('/:id/steps', async (req, res) => {
   const stepData = req.body;
   const { id } = req.params;
