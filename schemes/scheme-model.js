@@ -33,15 +33,24 @@ function findSteps(id) {
       'steps.step_number',
       'steps.instructions'
     )
-    .where({ scheme_id: id });
+    .where({ scheme_id: id })
+    .orderBy('step_number');
 }
 
 function add(schemeData) {
   return db('schemes').insert(schemeData);
 }
 
+//Pending stretch
+//Requires:
+//"step_number": 34,
+//  "instructions": "prime number",
+//    "scheme_id": 1
+
 function addStep(stepData, id) {
-  return db('steps');
+  return db('steps')
+    .where('scheme_id', '=', id)
+    .insert(stepData);
 }
 
 //will validate the id using the findById method in de router

@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-//[x] Tested and working
+//Pending stretch
 router.post('/:id/steps', async (req, res) => {
   const stepData = req.body;
   const { id } = req.params;
