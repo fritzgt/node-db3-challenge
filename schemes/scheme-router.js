@@ -4,6 +4,7 @@ const Schemes = require('./scheme-model.js');
 
 const router = express.Router();
 
+//[x] Tested and working
 router.get('/', async (req, res) => {
   try {
     const schemes = await Schemes.find();
@@ -13,6 +14,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//[x] Tested and working
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -22,13 +24,14 @@ router.get('/:id', async (req, res) => {
     if (scheme) {
       res.json(scheme);
     } else {
-      res.status(404).json({ message: 'Could not find scheme with given id.' })
+      res.status(404).json({ message: 'Could not find scheme with given id.' });
     }
   } catch (err) {
     res.status(500).json({ message: 'Failed to get schemes' });
   }
 });
 
+//[x] Tested and working
 router.get('/:id/steps', async (req, res) => {
   const { id } = req.params;
 
@@ -38,13 +41,16 @@ router.get('/:id/steps', async (req, res) => {
     if (steps.length) {
       res.json(steps);
     } else {
-      res.status(404).json({ message: 'Could not find steps for given scheme' })
+      res
+        .status(404)
+        .json({ message: 'Could not find steps for given scheme' });
     }
   } catch (err) {
     res.status(500).json({ message: 'Failed to get steps' });
   }
 });
 
+//[x] Tested and working
 router.post('/', async (req, res) => {
   const schemeData = req.body;
 
@@ -56,9 +62,10 @@ router.post('/', async (req, res) => {
   }
 });
 
+//Pending stretch
 router.post('/:id/steps', async (req, res) => {
   const stepData = req.body;
-  const { id } = req.params; 
+  const { id } = req.params;
 
   try {
     const scheme = await Schemes.findById(id);
@@ -67,13 +74,14 @@ router.post('/:id/steps', async (req, res) => {
       const step = await Schemes.addStep(stepData, id);
       res.status(201).json(step);
     } else {
-      res.status(404).json({ message: 'Could not find scheme with given id.' })
+      res.status(404).json({ message: 'Could not find scheme with given id.' });
     }
   } catch (err) {
     res.status(500).json({ message: 'Failed to create new step' });
   }
 });
 
+//[x] Tested and working
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const changes = req.body;
@@ -81,6 +89,7 @@ router.put('/:id', async (req, res) => {
   try {
     const scheme = await Schemes.findById(id);
 
+    console.log('Testing: ', scheme);
     if (scheme) {
       const updatedScheme = await Schemes.update(changes, id);
       res.json(updatedScheme);
@@ -92,6 +101,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+//[x] Tested and working
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
